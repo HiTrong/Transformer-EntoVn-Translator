@@ -1,0 +1,29 @@
+# Create venv in Anaconda
+conda create -n py310 python=3.10
+
+# Activate venv
+conda activate py310
+
+# Deactivate venv
+conda deactivate
+
+# Install pytorch (https://pytorch.org/) -> choose version and copy command line
+conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+
+# Check torch running GPU or CPU
+python 
+import torch
+if torch.cuda.is_available():
+    print("CUDA is available. PyTorch is using GPU.")
+    print("Number of GPUs available: ", torch.cuda.device_count())
+    print("GPU name: ", torch.cuda.get_device_name(0))
+else:
+    print("CUDA is not available. PyTorch is using CPU.")
+
+# Create Kernel
+pip install ipykernel
+python -m ipykernel install --user --name=TorchCuda
+
+# Install Jupyter notebook
+pip install jupyter
+jupyter notebook
